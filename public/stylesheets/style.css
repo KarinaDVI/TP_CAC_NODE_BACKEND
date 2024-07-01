@@ -1,0 +1,352 @@
+/* body {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+a {
+  color: #00B7FF;
+} */
+
+*{
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+
+/*HEADER*/
+
+
+button {
+    background-color: #af20d3;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+	text-align: right;
+}
+
+/* .dark-mode {
+    background-color: #ffffff;
+    color: #050505;
+} */
+
+.barra-navegacion{
+	display: flex;
+	justify-content: space-evenly;
+}
+
+/*RESPONSABILIDAD*/
+
+.respon{
+	width: 98%;
+	height: auto;
+	padding: 2vh 5%;
+	margin: auto;
+	text-align: justify;
+	background-color: black;
+	color: #ab9eef;
+}
+
+/*FOOTER*/
+
+footer{
+	background-color: #8F7CEC;
+	padding: 1% 0% 1% 0%;
+	margin: auto;
+	overflow: hidden;
+}
+
+.contenedor-footer{
+	display: flex;
+	width: 90%;
+	justify-content: space-evenly;
+	margin: auto;
+	padding-bottom: 50px;
+	border-bottom: 1px solid #8F7CEC;
+}
+
+.content-footer{
+	text-align: center;
+	margin: 1% 10% 1% 10%;
+}
+
+.content-footer h4{
+	color: black;
+	border-bottom: 3px solid #af20d3;
+}
+
+.content-footer p{
+	color: black;
+}
+
+.titulo-final{
+	color: black;
+	text-align: center;
+	font-size: 24px;
+}
+
+/* -----Agregados y modificados para el index (Karina)---------------------------------*/
+/* .bodystyles{
+	background-color: #070707;
+	color: #ffffff;
+} */
+
+body{
+	background-color:#070707;
+}
+
+
+.background-index {
+	background-image: url("https://images.pexels.com/photos/1306791/pexels-photo-1306791.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1");
+	background-repeat: no-repeat;
+	background-size:cover;
+}
+
+/* ----------------Fuentes ----------------------*/
+.fontGlory300{
+
+   	
+   font-optical-sizing: auto;
+   font-weight: 300;
+   font-style: normal;
+}
+ 
+.fontGlory600{
+   font-family: "Glory", sans-serif;
+   font-optical-sizing: auto;
+   font-weight: 600;
+   font-style: italic;
+   letter-spacing:20px;
+}
+.fontMaliregular400 {
+	font-family: "Mali", cursive;
+	font-weight: 400;
+	font-style: normal;
+  }
+  .fontMalisemibold600 {
+	font-family: "Mali", cursive;
+	font-weight: 600;
+	font-style: normal;
+  }
+
+
+/* -------------Navbar experimental--------------------- */
+  
+.btn-outline-image{
+	background-color: #00000000;
+    color: #000000;
+    border: none;
+    cursor: pointer;
+    border-radius: 25%;
+	text-align: right;
+	padding:0;
+	margin:auto 0;
+	align-self:center;
+	justify-content: center;
+}
+.icondarken {
+	margin: 2%;
+	width: 2em;
+	height: 2em;
+	vertical-align: -0.125em;
+	fill:#ffffff;
+}
+.icondarken:hover{
+	scale:1.2;
+}
+
+.background-none{
+	background-color: none;
+}
+.backmask{
+  /* Enmascaraba el fondo al iniciar */
+	opacity: 1;
+}
+
+.barra-navegacion{
+	display:flex;
+	align-items: center;
+	justify-content: end;
+	padding:2vw;
+}
+.barra-navegacion:hover{
+	background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0));
+  	transition: background-image 10000ms cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+.nav-items{
+	text-align: center;
+	justify-content: space-around;
+}
+
+.nodeteck-logo{
+	display: flex;
+	flex-direction: column;
+	justify-content: stretch;
+	width:30%;
+	justify-items: center;
+	margin:auto;
+}
+
+.nodeteck-logo svg:nth-child(2){
+	width: 90%;
+	margin-top: 5%;
+
+}
+.nodeteck-logo svg:nth-child(3){
+	width:75%;
+}
+
+.rot-scale-logo svg:nth-child(1){
+	margin-top: 0%;
+}
+.rot-scale-logo svg:nth-child(2){
+	width: 90%;
+	margin-top: 0%;
+}
+.rot-scale-logo svg:nth-child(3){
+	width:75%;
+	margin-top: none;
+}
+
+/* Colores para el logo */
+.nodeteck-icon-wave{
+	fill:#1b54da;
+}
+.nodeteck-icon-font{
+	fill:#e4e4e4;
+}
+
+/* -------Medios de pago y FAQS------ */
+.mediospago{
+	height:30%;
+	margin: 5% 0;
+}
+.imgsvg1 {
+	width:112px;
+}
+.imgsvg2 {
+	width:64px;
+}
+.faqsdiv{
+	height:10rem;
+	/* background-color: #8F7CEC; */
+	background-image: linear-gradient(to left, rgba(0, 0, 0, 0.7), #8f7cec2c);
+	transition: background-image 10000ms cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+.imgsvg100px{
+	width:67px;
+	fill:#fff;
+}
+
+/* ---------------Footer experimental -------------*/
+footer{
+	background-color:#00000000;
+}
+.content-footer p, .content-footer h6, .titulo-final{
+	color: #8F7CEC;
+	font-size: 1rem;
+}
+
+
+
+/* -----------Para la animación de entrada -------------*/
+.body-fullcover{
+	opacity:0;
+	display:flex;
+	z-index:1000;
+	position: fixed;
+    bottom: 0%;
+    right: 0;
+	padding:auto;
+    border: none;
+	width:100vw;
+	height: 100vh; 
+	align-items: center; 
+	pointer-events: none;
+}
+.rot-scale-logo{
+	display: flex;
+    justify-content: center; 
+    align-items: center; 
+	margin:auto;
+    height: 50vh; 
+}
+
+.animateonload{
+	width:100vw;
+	height:100vh;
+	background-color: #070707;
+	animation-name: fadeIn;
+	animation-duration: 3s;
+	animation-fill-mode: none; /* La animación volverá al estado inicial después de completarse */
+	animation-iteration-count: 1; /* Se ejecutará solo un vez */
+	pointer-events: auto;
+  }
+
+.animateonloadtext{
+	animation: swing; /* Importado de libreria de animaciones*/
+	animation-delay: 1s;
+	animation-duration: 1s; 
+	animation-fill-mode: none; 
+	animation-iteration-count: 1;
+	pointer-events: auto;
+  }
+ 
+  @keyframes fadeIn {
+	0% { opacity: .2 }
+	100% { opacity: 1; transform: scale(1); }
+  }
+
+
+/* -----Cards----- */
+.cardframe{
+	border-radius: 5%;
+	background-color: #292929;
+	height:500px;
+}
+
+.cardwidth{
+	width: 19rem;
+}
+
+/* ------Espaciados, margenes y otros --------------- */
+.textbody{
+	padding:5%;
+	padding-top: 12%;
+}
+
+.flexcenter{
+	display:flex;
+	flex-direction:row;
+	justify-content: center;
+	align-items: center;
+}
+.vh100{
+	height:100vh
+}
+.vh50{
+	height:50vh
+}
+.my20{
+	margin: 20% 0%
+}
+
+/*-------------- Recursos-------------------- */
+/* FontAwesome
+   Bootstrap 5 
+   Animate.css
+   logomaster.ai
+
+*/
+
+/*  Fin de agregados para el index */
+
+
+/* Media Query para pantallas más pequeñas */
+@media screen and (max-width: 976px){
+	.cardwidth{
+		width: 60%;
+	}
+} 

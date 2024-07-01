@@ -1,0 +1,18 @@
+<main>
+    <h2 class="m-4">Agregar Shows</h2>
+    <div class="container w-sm-80 w-lg-60 bg-light mx-auto vh-100">
+        <form class="mx-2 " method="post" enctype="multipart/form-data" name="contact-form" action="">
+            <label class="row form-label" for="nombre">Nombre:</label>
+            <input class="row form-control" type="text" name="nombre" id="nombre" required>
+            <label class="row form-label" for="fecha">Fecha del show:</label>
+            <input class="row form-control" type="date" name="fecha" id="fecha" required>
+             <label class="row form-label" for="descripcion">Descripcion:</label>
+            <input class="row form-control" type="text" name="descripcion" id="descripcion" required>
+            <div class='d-block sm-d-flex text-center mx-auto my-2 d-sm-block'>
+                <input class="btn btn-outline-primary" type="submit" name="Alta" value="Insertar">
+                <a class="" href="/shows/"><button type="button" class="btn btn-primary menu-icon border-0 px-4">Volver</button></a> 
+            </div>
+        </form>
+    </div>
+    
+</main>
