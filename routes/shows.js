@@ -1,15 +1,13 @@
 var express = require('express');
 var router = express.Router();
 
-const mysql = require('mysql');
-const connection = mysql.createConnection({
-    host: 'localhost',
-    user: 'admin',
-    password: 'pass',
-    database: 'venta_entradas_db'
-});
+const multer  = require('multer')
+const upload = multer({ dest: 'uploads/' })
 
-connection.connect();
+const connection = require("./../bbdd")
+
+const fs = require('fs')
+
 /* GET home page. */
 /* router.get('/', function(req, res, next) {
     
@@ -35,9 +33,44 @@ router.get('/listado/', function(req, res, next) {
                             header:'header',
                             mostrarListado:true,
                             mostrarNovedades:false,
-                            mediosDePago:false})
+                            mediosDePago:false,
+                            mostrarAlta:false})
 
       });
 });
+  /* MostrarForm de alta */
+  router.get('/alta/', function(req,res, next){
+
+    res.render('index',{
+                        mensaje:'Alta de Shows',
+                        listadoshows:null,
+                        footer:'footer', 
+                        header:'header',
+                        mostrarListado:false,
+                        mostrarNovedades:false,
+                        mediosDePago:false,
+                        mostrarAlta:true})
+
+  });
+
+/* Alta de Producto */
+router.post('/ingreso',  upload.single('img'), async function (req, res, next){
   
+  // Concatenando cadenas con signo +
+  let consulta = 'insert into shows (nombre, fecha, descripcion, img) values("' + req.body.nombre + '","' 
+                                                                                    + req.body.fecha +'","' 
+                                                                                    + req.body.descripcion + '","/images/' 
+                                                                                    + req.file.originalname + '")'
+  // Usando template string
+  // `insert into productos(nombre, descripcion,  imagen) values('${req.body.nombre}','${req.body.descripcion}','/images/${req.file.originalname}')`
+  connection.query(consulta, function (error, results, fields) {
+    if (error) throw error;
+    res.json({mensaje: "Alta realizada exitosamente"})
+  });
+
+  fs.createReadStream("./uploads/" + req.file.filename).pipe(fs.createWriteStream("./public/images/" + req.file.originalname), function(error){})
+})
+
+
+
   module.exports = router;

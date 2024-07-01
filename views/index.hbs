@@ -120,10 +120,13 @@
                         </div>
                     </div>
                 {{/each}}
-				{{/if}}
-				{{#if mostrarListado}}
-					{{> listadoshows}}
-				{{/if}}
+		{{/if}}
+		{{#if mostrarListado}}
+			{{> listadoshows}}
+		{{/if}}
+		{{#if mostrarAlta}}
+			{{>alta_form}}
+		{{/if}}
 				
             </div>
 

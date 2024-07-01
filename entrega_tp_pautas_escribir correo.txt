@@ -1,0 +1,11 @@
+Entrega TP
+
+Mail: alberto.feldman@bue.edu.ar
+      comisiones2024.1cac@gmail.com
+
+Asunto: Comision 24124 - Entrega TP - Grupo 12
+
+Cuerpo:
+
+Nombres y DNIs de los integrantes
+Link al repositorio git o al drive donde esta la aplicación.

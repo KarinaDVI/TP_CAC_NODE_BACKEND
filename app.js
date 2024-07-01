@@ -22,6 +22,7 @@ app.set('view engine', 'hbs');
 var hbs = require('hbs');
 
 hbs.registerPartial('listadoshows', '{{listado}}');
+hbs.registerPartial('alta', '{{alta_form}}');
 
 app.use(logger('dev'));
 app.use(express.json());

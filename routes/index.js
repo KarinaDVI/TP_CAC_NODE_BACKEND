@@ -26,7 +26,9 @@ router.get('/', function(req, res, next) {
                                 header:'header',
                                 mostrarListado:false,
                                 mostrarNovedades:true,
-                                mediosDePago:true})
+                                mediosDePago:true,
+                                mostrarAlta:false})
+                                
           
         });
   
