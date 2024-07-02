@@ -9,9 +9,8 @@ var logger = require('morgan');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var showsRouter = require('./routes/shows');
-var registerRouter = require('./routes/register');
 var carritoRouter = require('./routes/carrito');
-var addshowRouter = require('./routes/addshow');
+var sesionRouter = require('./routes/sesion');
 
 var app = express();
 
@@ -34,9 +33,10 @@ hbs.registerPartials(__dirname + '/views/partials', function (err) {});
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/shows', showsRouter);
-app.use('/addshow',addshowRouter);
-app.use('/register', registerRouter);
 app.use('/carrito', carritoRouter);
+app.use('/sesion', sesionRouter);
+
+
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));

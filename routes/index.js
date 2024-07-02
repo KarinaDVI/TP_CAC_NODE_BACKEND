@@ -1,15 +1,7 @@
 var express = require('express');
 var router = express.Router();
+const connection = require("../bbdd")
 
-const mysql = require('mysql');
-const connection = mysql.createConnection({
-    host: 'localhost',
-    user: 'admin',
-    password: 'pass',
-    database: 'venta_entradas_db'
-});
-
-connection.connect();
 /* GET home page. */
 router.get('/', function(req, res, next) {
     connection.query( 'SELECT * FROM shows ORDER BY id DESC LIMIT 3;', function(error,
@@ -28,14 +20,19 @@ router.get('/', function(req, res, next) {
                                 mostrarNovedades:true,
                                 mediosDePago:true,
                                 mostrarAlta:false})
-                                
-          
         });
   
   });
 
 router.get('/info', function(req, res, next) {
   res.redirect('/shows');
+});
+
+router.get('/login', function(req, res, next) {
+  res.redirect('/sesion');
+});
+router.get('/registro', function(req, res, next) {
+  res.redirect('/sesion');
 });
 
 
