@@ -105,22 +105,76 @@
 		<!-- CARDS -->
 		{{#if mostrarNovedades}}
 		<div class="container-fluid d-flex justify-content-center mt-5 backmask">
-			<div id="cardindex">
+			<div id="cardindex" class="row justify-content-md-center row-cols-sm-2 row-cols-lg-3 row-cols-xl-4 g-2 my-4 align-middle">
                 {{#each data}}
                     <div class="col d-flex justify-content-center my-2">
                         <div class="card bg-dark cardwidth">
-                            <img src="/Backend/public/images/img/" class="card-img-top" alt="{{this.nombre}}">
-                            <div class="card-body">
-                                <h5 class="card-title fontMalisemibold600 ml-5 text-light">{{this.nombre}}</h5>
-                                <p class="card-text text-light">{{this.fecha}}</p>
+                            <img src="{{img}}" class="card-img-top h-75" alt="{{this.nombre}}">
+                            <div class="card-body h-20">
+                                <h4 class="card-title fontMalisemibold600 ml-5 text-light">{{this.nombre}}</h4>
+                                <p class="card-text text-light ms-5">{{this.fecha}}</p>
                             </div>
-                            <div class="card-body text-light text-center">
+                            <div class="card-body text-light d-flex align-items-center justify-content-center h-15">
                                 <a class="link-light link-offset-2 link-underline-opacity-0 link-underline-opacity-100-hover" href="/shows/listado" class="card-link">+Info</a>
                             </div>
                         </div>
                     </div>
                 {{/each}}
 		{{/if}}
+
+	{{!--  --}}
+	{{!-- <div class="container-fluid d-flex justify-content-center mt-5 backmask" style="opacity: 1;">
+			<div id="cardindex" class="row row-cols-sm-2 row-cols-lg-3 row-cols-xl-4 g-2 my-4">
+				
+			<div class="col d-flex justify-content-center my-2">
+          <div class="card bg-dark cardwidth">
+            <img src="./assets/img/pericos.jpg" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title fontMalisemibold600 ml-5 text-light">Los Pericos</h5>
+            <p class="card-text text-light">26 de Mayo 2024</p>
+          </div>
+          <div class="card-body  text-light text-center">
+            <a class="link-light link-offset-2 link-underline-opacity-0 link-underline-opacity-100-hover" href="registro.html">+Info</a>
+          </div>
+        </div>
+        </div><div class="col d-flex justify-content-center my-2">
+          <div class="card bg-dark cardwidth">
+            <img src="./assets/img/kapanga.jpg" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title fontMalisemibold600 ml-5 text-light">Kapanga</h5>
+            <p class="card-text text-light">26 de Mayo 2024</p>
+          </div>
+          <div class="card-body  text-light text-center">
+            <a class="link-light link-offset-2 link-underline-opacity-0 link-underline-opacity-100-hover" href="registro.html">+Info</a>
+          </div>
+        </div>
+        </div><div class="col d-flex justify-content-center my-2">
+          <div class="card bg-dark cardwidth">
+            <img src="./assets/img/decadentes.jpg" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title fontMalisemibold600 ml-5 text-light">Los autenticos decadentes</h5>
+            <p class="card-text text-light">1 de Junio 2024</p>
+          </div>
+          <div class="card-body  text-light text-center">
+            <a class="link-light link-offset-2 link-underline-opacity-0 link-underline-opacity-100-hover" href="registro.html">+Info</a>
+          </div>
+        </div>
+        </div><div class="col d-flex justify-content-center my-2">
+          <div class="card bg-dark cardwidth">
+            <img src="./assets/img/lali.jpg" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title fontMalisemibold600 ml-5 text-light">Lali</h5>
+            <p class="card-text text-light">4 de Junio 2024</p>
+          </div>
+          <div class="card-body  text-light text-center">
+            <a class="link-light link-offset-2 link-underline-opacity-0 link-underline-opacity-100-hover" href="registro.html">+Info</a>
+          </div>
+        </div>
+        </div></div>
+
+		</div> --}}
+	{{!--  --}}
+
 		{{!-- {{#if mostrarListado}}
 			{{> listadoshows}}
 		{{/if}} --}}

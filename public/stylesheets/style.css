@@ -308,9 +308,11 @@ footer{
 }
 
 .cardwidth{
-	width: 19rem;
+	width:auto;
 }
-
+.card {
+	border: none;
+  }
 /* ------Espaciados, margenes y otros --------------- */
 .textbody{
 	padding:5%;

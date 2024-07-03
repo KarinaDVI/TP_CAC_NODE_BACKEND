@@ -27,33 +27,22 @@ router.get('/listado/', function(req, res, next) {
         if (error) throw error;
        
         res.render('listadoshows',{data:results, 
-                            mensaje:'Listado de shows',
-                            /* listadoshows:'listadoshows', */
-                            footer:'footer', 
-                            header:'header',
-                            /* mostrarListado:true,
-                            mostrarNovedades:false,
-                            mediosDePago:false,
-                            mostrarAlta:false,
-                            mostrarEdicion:false,
-                            mostrarEliminado:false */})
+                            mensaje:'Listado de shows'})
 
       });
 });
 
 /* Listado con filtro por id */
-router.get('/listado/:id', function(req, res, next) {
-
-  sentencia = 'select * from shows where id = ' +  req.params.id
-
-  connection.query(sentencia, function (error, results, fields) {
+router.post('/listado', function(req, res, next) {
+  if(req.body.id){
+    consulta = 'select * from shows where id = ' +  req.body.id +' LIMIT 1'
+  }else{
+    consulta= 'select * from shows'
+  }
+  connection.query(consulta, function (error, results, fields) {
       if (error) throw error;
-      res.render('listadoshows',{data:results, 
-                          mensaje:'Listado de shows',
-                          footer:'footer', 
-                          header:'header',
-                  })
-
+      res.render('listadoshows', {data:results, 
+                          mensaje:'Listado de shows'})
     });
 });
 
