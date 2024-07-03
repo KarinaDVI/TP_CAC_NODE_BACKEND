@@ -10,8 +10,7 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var showsRouter = require('./routes/shows');
 var carritoRouter = require('./routes/carrito');
-var sesionRouter = require('./routes/sesion');
-
+var authRouter = require('./routes/authRoutes');
 var app = express();
 
 // view engine setup
@@ -20,8 +19,11 @@ app.set('view engine', 'hbs');
 
 var hbs = require('hbs');
 
-hbs.registerPartial('listadoshows', '{{listado}}');
-hbs.registerPartial('alta', '{{alta_form}}');
+/* hbs.registerPartial('listadoshows', '{{listado}}'); */
+/* hbs.registerPartial('alta', '{{alta_form}}'); */
+/* hbs.registerPartial('login', '{{login}}');
+hbs.registerPartial('registro', '{{registro}}');
+hbs.registerPartial('eliminar', '{{eliminr_show}}'); */
 
 app.use(logger('dev'));
 app.use(express.json());
@@ -30,12 +32,12 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 hbs.registerPartials(__dirname + '/views/partials', function (err) {});
 
+
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/shows', showsRouter);
 app.use('/carrito', carritoRouter);
-app.use('/sesion', sesionRouter);
-
+app.use('/auth',authRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

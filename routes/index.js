@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 const connection = require("../bbdd")
+const authController = require('../controllers/authController');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -24,17 +25,24 @@ router.get('/', function(req, res, next) {
   
   });
 
-router.get('/info', function(req, res, next) {
+router.get('/info', (req, res, next)=>{
   res.redirect('/shows');
 });
 
-router.get('/login', function(req, res, next) {
-  res.redirect('/sesion');
+/* ?????? */
+router.get('/login', (req, res, next)=>{
+  res.render('login');
 });
-router.get('/registro', function(req, res, next) {
-  res.redirect('/sesion');
+router.get('/register', (req, res, next)=> {
+  res.render('register');
 });
+/*  */
 
+/* // Ruta para procesar los datos del formulario de registro
+router.post('/register', authController.register);
 
+// Ruta para iniciar sesión con un usuario existente
+router.post('/login', authController.login);
+ */
 
 module.exports = router;

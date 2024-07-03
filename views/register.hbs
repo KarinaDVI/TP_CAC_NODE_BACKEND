@@ -1,7 +1,18 @@
-<div class="main-container">
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="./stylebox.css">
+    <script src="scriptLogin.js"></script>
+	<title>Login</title>
+</head>
+<body>
+	<div class="main-container">
+		<div class="main-container">
     <div class="login-box">
         <h2>Registrarse</h2>
-        <form id="registration-form" action="/registro/" enctype="multipart/form-data" method="post">
+        <form id="registration-form" action="/register/" enctype="multipart/form-data" method="post">
             <div class="user-box">
                 <input type="text" id="username" name="username" required>
                 <label>Usuario</label>
@@ -21,11 +32,15 @@
             <div class="user-box">
                 <input type="password" id="confirmarclave" name="confirmarclave" required>
                 <label>Confirme Contraseña</label>
-                <p>{{mensaje}}</p>
+                <p>ok</p>
             </div>
             <div class="button-form">
-                <input type="submit" id="submit" value="Enviar">
+                <input type="submit" id="submit" name="submit" value="Enviar">
             </div>
         </form>
     </div>
 </div>
+</body>
+   {{> footer}}
+</body>
+</html>
