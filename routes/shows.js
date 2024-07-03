@@ -26,17 +26,17 @@ router.get('/listado/', function(req, res, next) {
     connection.query(consulta, function (error, results, fields) {
         if (error) throw error;
        
-        res.render('index',{data:results, 
+        res.render('listadoshows',{data:results, 
                             mensaje:'Listado de shows',
-                            listadoshows:'listadoshows',
+                            /* listadoshows:'listadoshows', */
                             footer:'footer', 
                             header:'header',
-                            mostrarListado:true,
+                            /* mostrarListado:true,
                             mostrarNovedades:false,
                             mediosDePago:false,
                             mostrarAlta:false,
                             mostrarEdicion:false,
-                            mostrarEliminado:false})
+                            mostrarEliminado:false */})
 
       });
 });
@@ -48,17 +48,11 @@ router.get('/listado/:id', function(req, res, next) {
 
   connection.query(sentencia, function (error, results, fields) {
       if (error) throw error;
-      res.render('index',{data:results, 
+      res.render('listadoshows',{data:results, 
                           mensaje:'Listado de shows',
-                          listadoshows:'listadoshows',
                           footer:'footer', 
                           header:'header',
-                          mostrarListado:true,
-                          mostrarNovedades:false,
-                          mediosDePago:false,
-                          mostrarAlta:false,
-                          mostrarEdicion:false,
-                          mostrarEliminado:false})
+                  })
 
     });
 });
@@ -66,69 +60,52 @@ router.get('/listado/:id', function(req, res, next) {
   /* MostrarForm de alta */
   router.get('/alta/', function(req,res, next){
 
-    res.render('index',{
+    res.render('alta_form',{
                         mensaje:'Alta de Shows',
-                        listadoshows:null,
                         footer:'footer', 
-                        header:'header',
-                        mostrarListado:false,
-                        mostrarNovedades:false,
-                        mediosDePago:false,
-                        mostrarAlta:true,
-                        mostrarEdicion:false,
-                        mostrarEliminado:false})
+                        header:'header'})
 
   });
 
 /* Alta de Show */
-router.post('/ingreso',  upload.single('img'), async function (req, res, next){
+router.post('/alta',  upload.single('img'), async function (req, res, next){
   // Concatenando cadenas con signo +
   let consulta = 'insert into shows (nombre, fecha, descripcion, img) values("' + req.body.nombre + '","' 
                                                                                     + req.body.fecha +'","' 
                                                                                     + req.body.descripcion + '","/images/' 
                                                                                     + req.file.originalname + '")'
-  connection.query(consulta, function (error, results, fields) {
+ let results= await connection.query(consulta, function (error, results, fields) {
     if (error) throw error;
-    res.json({mensaje: "Alta realizada exitosamente"})
   });
-
   fs.createReadStream("./uploads/" + req.file.filename).pipe(fs.createWriteStream("./public/images/" + req.file.originalname), function(error){})
+  res.render('mensaje', {mensaje: "Alta realizada exitosamente"})
 })
 
 /* Modificación de Show - Anda medio medio -.-*/
 router.get('/modificar/:id', function (req, res, next){
   connection.query('select * from shows where id = ' + req.params.id, function (error, results, fields) {
       if (error) throw error;
-      res.render('index',{data:results,
-                          mensaje:'Edicion de Shows',
-                          listadoshows:null,
-                          footer:'footer', 
-                          header:'header',
-                          mostrarListado:false,
-                          mostrarNovedades:false,
-                          mediosDePago:false,
-                          mostrarAlta:false,
-                          mostrarEdicion:true,
-                          mostrarEliminado:false})
+      res.render('editar_show',{data:results,
+                                mensaje:'Edicion de Shows'
+                                })
 
   });
 })
 
 
-router.put('/editar/:id',  upload.single('img'), async function (req, res, next){
+router.post('/modificar/:id',  upload.single('img'), async function (req, res, next){
   let consulta;
-  console.log(req.params.id)
   if (req.file){
     consulta =  `update shows set nombre  = '${req.body.nombre}',fecha = '${req.body.fecha}', descripcion  = '${req.body.descripcion}', img = '/images/${req.file.originalname}' where id = ${req.params.id} `
 
     fs.createReadStream("./uploads/" + req.file.filename).pipe(fs.createWriteStream("./public/images/" + req.file.originalname), function(error){})
   } else {
-    consulta = `update shows set nombre  = '${req.body.nombre}',fecha = '${req.body.fecha}', descripcion  = '${req.body.descripcion}' where id = ${req.params.id}` 
+    consulta = `update shows set nombre  = '${req.body.nombre}', fecha = '${req.body.fecha}', descripcion  = '${req.body.descripcion}' where id = ${req.params.id}` 
   }  
   connection.query(consulta, function (error, results, fields) {
 
-    if (error) throw console.log(error + req.params.id);
-    res.json({ mensaje: "Modificación realizada exitosamente" });
+    if (error) throw error;
+    res.render('mensaje',{ mensaje: "Modificación realizada exitosamente" });
   });
 
 })
@@ -139,26 +116,17 @@ router.get('/eliminar/:id', function (req, res, next){
   connection.query('select * from shows where id = ' + req.params.id, function (error, results, fields) {
 
     if (error) throw error;
-      res.render('index',{data:results,
-                          mensaje:'Eliminar Show',
-                          listadoshows:null,
-                          footer:'footer', 
-                          header:'header',
-                          mostrarListado:false,
-                          mostrarNovedades:false,
-                          mediosDePago:false,
-                          mostrarAlta:false,
-                          mostrarEdicion:false,
-                          mostrarEliminado:true})
+      res.render('eliminar_show',{data:results,
+                          mensaje:'Eliminar Show'})
   });
 })
 
-router.delete('/eliminar/:id', function (req, res, next){
+router.post('/eliminar/:id', function (req, res, next){
 
   connection.query('delete from shows where id = ' + req.params.id, function (error, results, fields) {
 
     if (error) throw error;
-    res.render('index',{mensaje: "Se ha dado de baja el producto seleccionado"})
+    res.render('mensaje',{mensaje: "Se ha dado de baja el producto seleccionado"})
 
   });
 })

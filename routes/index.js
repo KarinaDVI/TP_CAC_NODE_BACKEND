@@ -13,14 +13,13 @@ router.get('/', function(req, res, next) {
            /*  console.log(results) */
             res.render('index',{data:results, 
                                 mensaje:'Nuevos Shows!', 
-                                listadoshows:null,
+                                /* listadoshows:null, */
                                 newshows:'newshows',
                                 footer:'footer', 
                                 header:'header',
-                                mostrarListado:false,
+                                /* mostrarListado:false, */
                                 mostrarNovedades:true,
-                                mediosDePago:true,
-                                mostrarAlta:false})
+                                mediosDePago:true})
         });
   
   });
