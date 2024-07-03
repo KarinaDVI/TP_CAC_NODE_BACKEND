@@ -14,7 +14,7 @@ exports.register = (req, res) => {
     const query = `INSERT INTO users (username, ciudad, email, clave) VALUES ("${username}", "${req.body.ciudad}", "${req.body.email}", "${password}")`;
     connection.query(query, (error, results) => {
       if (error) throw error;
-      res.json({ mensaje: 'Alta realizada exitosamente' });
+      res.render('mensaje',{ mensaje: 'Registro realizado exitosamente' });
       userid=results.insertId;
 
     const token = jwt.sign({ id: userid }, config.secretKey, { expiresIn: config.tokenExpiresIn });
@@ -37,7 +37,7 @@ exports.login = (req, res) => {
     const passwordIsValid = bcrypt.compareSync(clave, results[0].clave);
     if (!passwordIsValid) return res.status(401).send({ auth: false, token: null });
 
-    const token = jwt.sign({ id: results[0].id }, config.secretKey, { expiresIn: config.tokenExpiresIn });
+    const token = jwt.sign({ id: results[0].id_user }, config.secretKey, { expiresIn: config.tokenExpiresIn });
     res.status(200).send({ auth: true, token });
   });
 };

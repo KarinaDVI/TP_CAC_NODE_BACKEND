@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 01-07-2024 a las 05:47:13
+-- Tiempo de generación: 03-07-2024 a las 12:09:57
 -- Versión del servidor: 10.4.22-MariaDB
 -- Versión de PHP: 7.4.28
 
@@ -30,7 +30,7 @@ SET time_zone = "+00:00";
 CREATE TABLE `shows` (
   `id` int(11) NOT NULL,
   `nombre` varchar(255) NOT NULL,
-  `img` varchar(255) NOT NULL,
+  `img` varchar(255) DEFAULT NULL,
   `fecha` varchar(255) NOT NULL,
   `descripcion` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -40,14 +40,30 @@ CREATE TABLE `shows` (
 --
 
 INSERT INTO `shows` (`id`, `nombre`, `img`, `fecha`, `descripcion`) VALUES
-(1, 'Kapanga', 'someeee', '25/09/2024', ''),
-(2, 'Los Pericos', 'some2', '26/09/2024', ''),
-(3, 'Kapanga', 'someeee', '25/09/2024', ''),
-(4, 'Los Pericos', 'some2', '26/09/2024', ''),
-(5, 'La Renga', 'some3', '30/11/2024', ''),
-(6, 'La Renga', 'some3', '30/11/2024', ''),
-(7, 'Evankell', 'some5', '21/12/2024', ''),
-(8, 'Evankell', 'some5', '21/12/2024', '');
+(9, 'nuevo show', '/images/4196e1fe-c3ae-4bf6-bb41-f9d6bad8a3bf.jpg', '2024-08-03', 'algo'),
+(11, 'show1', '/images/pericos.jpg', '2024-08-11', 'long play'),
+(12, 'show1', '/images/kapanga.jpg', '2024-08-10', 'long play');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `users`
+--
+
+CREATE TABLE `users` (
+  `id_user` int(11) NOT NULL,
+  `username` varchar(255) NOT NULL,
+  `ciudad` varchar(30) DEFAULT NULL,
+  `email` varchar(50) NOT NULL,
+  `clave` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `users`
+--
+
+INSERT INTO `users` (`id_user`, `username`, `ciudad`, `email`, `clave`) VALUES
+(2, 'testuser', 'caba', 'algo@algo.com', '$2a$08$yE3YC6sB2Sdu/c3EufAHce9vshanBPuB0yjiRr6OfkMQN51crJ1zq');
 
 --
 -- Índices para tablas volcadas
@@ -60,6 +76,12 @@ ALTER TABLE `shows`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indices de la tabla `users`
+--
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`id_user`);
+
+--
 -- AUTO_INCREMENT de las tablas volcadas
 --
 
@@ -67,7 +89,13 @@ ALTER TABLE `shows`
 -- AUTO_INCREMENT de la tabla `shows`
 --
 ALTER TABLE `shows`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+
+--
+-- AUTO_INCREMENT de la tabla `users`
+--
+ALTER TABLE `users`
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
