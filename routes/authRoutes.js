@@ -8,7 +8,12 @@ const authMiddleware = require('../middlewares/authMiddleware');
 
 var router = express.Router();
 
-
+router.get('/login', (req, res, next)=>{
+  res.render('login');
+});
+router.get('/register', (req, res, next)=> {
+res.render('register');
+});
 // Ruta para registrar un nuevo usuario
 router.post('/register', authController.register);
 
@@ -20,10 +25,5 @@ router.post('/login', authController.login);
 router.get('/protected', authMiddleware, (req, res) => {
     res.status(200).send(`Hello user ${req.userId} esta es una ruta protegida`);
 });
-
-// Ejecuta el servidor en el puerto 3000.
-/* app.listen(3000, () => {
-    console.log('El servidor está ejecutándose en el puerto 3000');
-}); */
 
 module.exports = router;
