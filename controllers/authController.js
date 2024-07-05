@@ -27,7 +27,7 @@ exports.register = (req, res) => {
 exports.login = (req, res) => {
   const { username, clave } = req.body;
 
-  const query = `SELECT * FROM users WHERE username = "${username}" AND clave = "${clave}"`;
+  const query = `SELECT * FROM users WHERE username = "${username}"`;
   connection.query(query, (error, results) => {
     if (error) throw error;
     if (results.length === 0) {
@@ -38,7 +38,8 @@ exports.login = (req, res) => {
     if (!passwordIsValid) return res.status(401).send({ auth: false, token: null });
 
     const token = jwt.sign({ id: results[0].id_user }, config.secretKey, { expiresIn: config.tokenExpiresIn });
-    res.status(200).send({ auth: true, token });
+    /* res.status(200).send({ auth: true, token }); */
+    res.render('index',{ mensaje:'Usuario logueado' });
   });
 };
 

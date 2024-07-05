@@ -13,11 +13,9 @@ router.get('/', function(req, res, next) {
            /*  console.log(results) */
             res.render('index',{data:results, 
                                 mensaje:'Nuevos Shows!', 
-                                /* listadoshows:null, */
                                 newshows:'newshows',
                                 footer:'footer', 
                                 header:'header',
-                                /* mostrarListado:false, */
                                 mostrarNovedades:true,
                                 mediosDePago:true})
         });
@@ -28,14 +26,6 @@ router.get('/info', (req, res, next)=>{
   res.redirect('/shows');
 });
 
-/* ?????? */
-router.get('/login', (req, res, next)=>{
-  res.render('login');
-});
-router.get('/register', (req, res, next)=> {
-  res.render('register');
-});
-/*  */
 
 /* // Ruta para procesar los datos del formulario de registro
 router.post('/register', authController.register);

@@ -3,41 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="./stylebox.css">
-	<title>Login</title>
+    <link rel="stylesheet" type="text/css" href="../public/stylesheets/stylebox.css">
+    <title>Registrarse</title>
 </head>
 <body>
-	<div class="main-container">
-		<div class="main-container">
-    <div class="login-box">
-        <h2>Registrarse</h2>
-        <form id="registration-form" action="/register/" enctype="multipart/form-data" method="post">
-            <div class="user-box">
-                <input type="text" id="username" name="username" required>
-                <label>Usuario</label>
-            </div>
-            <div class="user-box">
-                <input type="text" id="ciudad" name="ciudad" required>
-                <label for="ciudad">Ciudad</label>
-            </div>
-            <div class="user-box">
-                <input type="email" id="email" name="email" required>
-                <label>Correo Electronico</label>
-            </div>
-            <div class="user-box">
-                <input type="password" id="clave" name="clave" required>
-                <label>Contraseña</label>
-            </div>
-            <div class="user-box">
-                <input type="password" id="confirmarclave" name="confirmarclave" required>
-                <label>Confirme Contraseña</label>
-                <p>ok</p>
-            </div>
-            <div class="button-form">
-                <input type="submit" id="submit" name="submit" value="Enviar">
-            </div>
-        </form>
+    <div class="main-container">
+        <div class="login-box">
+            <h2>Registrarse</h2>
+            <form id="registration-form" action="/auth/register" method="post">
+                <div class="user-box">
+                    <input type="text" id="username" name="username" required>
+                    <label>Usuario</label>
+                </div>
+                <div class="user-box">
+                    <input type="text" id="ciudad" name="ciudad" required>
+                    <label for="ciudad">Ciudad</label>
+                </div>
+                <div class="user-box">
+                    <input type="email" id="email" name="email" required>
+                    <label>Correo Electrónico</label>
+                </div>
+                <div class="user-box">
+                    <input type="password" id="clave" name="clave" required>
+                    <label>Contraseña</label>
+                </div>
+                <div class="user-box">
+                    <input type="password" id="confirmarclave" name="confirmarclave" required>
+                    <label>Confirme Contraseña</label>
+                </div>
+                <div class="button-form">
+                    <input type="submit" id="submit" name="submit" value="Enviar">
+                </div>
+            </form>
+        </div>
     </div>
-</div>
 </body>
 </html>
