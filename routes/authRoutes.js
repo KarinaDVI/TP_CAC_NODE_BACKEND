@@ -20,6 +20,12 @@ router.post('/register', authController.register);
 // Ruta para iniciar sesión con un usuario ya existente
 router.post('/login', authController.login);
 
+//Salir de sesion
+router.get('/logout', (req, res, next)=> {
+  res.clearCookie('authToken');
+  res.render('mensaje', { mensaje:'Usuario deslogueado'});
+  });
+
 // Ruta protegida que solo puede ser accedida con autenticación,
 // devuelve 'Bienvenido' al usuario autenticado.
 router.get('/protected', authMiddleware, (req, res) => {

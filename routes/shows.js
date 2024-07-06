@@ -6,7 +6,8 @@ const upload = multer({ dest: 'uploads/' })
 
 const connection = require("./../bbdd")
 
-const fs = require('fs')
+const fs = require('fs');
+const authMiddleware = require('../middlewares/authMiddleware');
 
 /* GET home page. */
 /* router.get('/', function(req, res, next) {
@@ -21,7 +22,7 @@ const fs = require('fs')
   }); */
 
   
-router.get('/listado/', function(req, res, next) {
+router.get('/listado/',authMiddleware, function(req, res, next) {
     consulta = 'select * from shows'; 
     connection.query(consulta, function (error, results, fields) {
         if (error) throw error;
@@ -33,7 +34,7 @@ router.get('/listado/', function(req, res, next) {
 });
 
 /* Listado con filtro por id */
-router.post('/listado', function(req, res, next) {
+router.post('/listado', authMiddleware, function(req, res, next) {
   if(req.body.id){
     consulta = 'select * from shows where id = ' +  req.body.id +' LIMIT 1'
   }else{

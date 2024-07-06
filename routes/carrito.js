@@ -9,20 +9,50 @@ const connection = mysql.createConnection({
     database: 'venta_entradas_db'
 });
 
-connection.connect();
-/* GET home page. */
 router.get('/', function(req, res, next) {
-    
-    connection.query( 'SELECT * FROM shows ORDER BY id DESC LIMIT 3;', function(error,
+    connection.query( 'SELECT * FROM shows;', function(error,
         results, fields){
             
             if (error) throw error;
             /* res.json({data: results}) */
            /*  console.log(results) */
-            res.render('index',{data:results})
-          
+            res.render('carrito',{data:results,
+                                mensaje:'Adquiri tus entradas!'})
         });
   
   });
+
+  router.get('/comprar/', function(req,res, next){
+
+    let compras =[
+
+    ]
+    compras.push()
+    res.render('alta_form',{
+                        mensaje:'Alta de Shows',
+                        footer:'footer', 
+                        header:'header'})
+
+  });
+  router.post('/comprar', function(req, res, next) {
+    //Averiguar como hacer para que cada vez que se haga click en agregar
+    //al carrito se pushee a compras y despues armar la consulta y enviarla a la base
+
+    connection.query( 'insert into compra (id_user, id_show, cantidad, precio) values("' 
+                                            + req.body.user.id + '","' 
+                                            + req.body.id_show +'","' 
+                                            + req.body.cantidad + '","' 
+                                            + req.file.precio + '")', 
+    function(error, results, fields){
+            
+            if (error) throw error;
+            /* res.json({data: results}) */
+           /*  console.log(results) */
+           /*  res.render('carrito',{data:results,
+                                mensaje:'Adquiri tus entradas!'}) */
+        });
+  
+  });
+  
   
   module.exports = router;

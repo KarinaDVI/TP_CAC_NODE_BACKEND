@@ -1,56 +1,69 @@
-var createError = require('http-errors');
-var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
-/* const cors = require('cors'); */
+const createError = require('http-errors');
+const express = require('express');
+const path = require('path');
+const cookieParser = require('cookie-parser');
+const logger = require('morgan');
+const jwt = require('jsonwebtoken');
+const config = require('./config/config');
+const hbs = require('hbs');
 
-
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
-var showsRouter = require('./routes/shows');
-var carritoRouter = require('./routes/carrito');
-var authRouter = require('./routes/authRoutes');
-var app = express();
+const indexRouter = require('./routes/index');
+const usersRouter = require('./routes/users');
+const showsRouter = require('./routes/shows');
+const carritoRouter = require('./routes/carrito');
+const authRouter = require('./routes/authRoutes');
+const authMiddleware = require('./middlewares/authMiddleware');
+const authMiddlewareMix = require('./middlewares/authMiddlewareMix');
+/*  */
+const app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
-
-var hbs = require('hbs');
-
-/* hbs.registerPartial('listadoshows', '{{listado}}'); */
-/* hbs.registerPartial('alta', '{{alta_form}}'); */
-/* hbs.registerPartial('login', '{{login}}');
-hbs.registerPartial('registro', '{{registro}}');
-hbs.registerPartial('eliminar', '{{eliminr_show}}'); */
+hbs.registerPartials(__dirname + '/views/partials', function (err) {});
 
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-hbs.registerPartials(__dirname + '/views/partials', function (err) {});
 
+//middleware
+/* app.use((req, res, next) => {
+  const token = req.cookies.authToken;
+  if (token) {
+    jwt.verify(token, config.secretKey, (err, decoded) => {
+      if (!err) {
+        res.locals.user = decoded;
+      } else {
+        res.locals.user = null;
+      }
+      next(); 
+    });
+  } else {
+    res.locals.user = null;
+    next();
+  }
+}); */
+/* app.use(authMiddleware); */
+app.use(authMiddlewareMix);
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/shows', showsRouter);
 app.use('/carrito', carritoRouter);
-app.use('/auth',authRouter);
+app.use('/auth', authRouter);
 
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
   next(createError(404));
 });
 
 // error handler
-app.use(function(err, req, res, next) {
-  // set locals, only providing error in development
+app.use(function (err, req, res, next) {
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
 
-  // render the error page
   res.status(err.status || 500);
   res.render('error');
 });

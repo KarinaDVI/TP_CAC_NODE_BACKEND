@@ -7,7 +7,7 @@
     <title>Registrarse</title>
 </head>
 <body>
-    <div class="main-container">
+    <div class="main-container d-flex justify-content-center align-items-center align-content-center vh-100">
         <div class="login-box">
             <h2>Registrarse</h2>
             <form id="registration-form" action="/auth/register" method="post">
@@ -30,6 +30,10 @@
                 <div class="user-box">
                     <input type="password" id="confirmarclave" name="confirmarclave" required>
                     <label>Confirme Contraseña</label>
+                </div>
+                <div class="register" id="register">
+                    ¿Ya registrado? Logueate!
+                    <a href="/auth/login">Login</a>
                 </div>
                 <div class="button-form">
                     <input type="submit" id="submit" name="submit" value="Enviar">
