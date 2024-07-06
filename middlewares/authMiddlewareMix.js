@@ -6,7 +6,7 @@ const protectedRoutes = [
   '/auth/login',
   '/auth/register',
   '/carrito/'
-  // Agrega aquí más rutas que quieras proteger
+  // Añade aquí más rutas que quieras proteger
 ];
 
 const authMiddleware = (req, res, next) => {
@@ -21,11 +21,14 @@ const authMiddleware = (req, res, next) => {
         return res.status(500).render('login', { mensaje: 'Error al verificar el token, inicie sesión o regístrese' });
       }
 
-      // Token válido, configurar el usuario en res.locals
-      res.locals.user = decoded;
-      req.userId = decoded.id;
+      // Token válido, configurar el usuario en res.locals o req.session
+      res.locals.user = {
+        id: decoded.id,
+        username: decoded.username // Asegúrate de incluir username si lo necesitas
+      };
+      req.userId = decoded.id; // Opcional: almacenar el ID en req.userId si lo necesitas en otras partes del código
       console.log(`ID de usuario: ${req.userId}`);
-      console.log('Usuario:', res.locals.user);
+      console.log('UsuarioMix:', res.locals.user);
       next();
     });
   } else {
