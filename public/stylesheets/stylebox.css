@@ -116,8 +116,9 @@ button {
     background-color: #472350;
     color: #fff;
     border: none;
-    padding: 1%;
-    border-radius: 100px;
+    margin:2%;
+    padding: 2%;
+    border-radius: 20px;
 	font-size: 9px;
 }
 
