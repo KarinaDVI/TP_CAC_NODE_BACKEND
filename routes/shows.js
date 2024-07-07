@@ -60,10 +60,11 @@ router.post('/listado', authMiddleware, function(req, res, next) {
 /* Alta de Show */
 router.post('/alta',  upload.single('img'), async function (req, res, next){
   // Concatenando cadenas con signo +
-  let consulta = 'insert into shows (nombre, fecha, descripcion, img) values("' + req.body.nombre + '","' 
+  let consulta = 'insert into shows (nombre, fecha, descripcion, img, precio) values("' + req.body.nombre + '","' 
                                                                                     + req.body.fecha +'","' 
                                                                                     + req.body.descripcion + '","/images/' 
-                                                                                    + req.file.originalname + '")'
+                                                                                    + req.file.originalname + '","'
+                                                                                    + req.body.precio +'")'
  let results= await connection.query(consulta, function (error, results, fields) {
     if (error) throw error;
   });
@@ -86,11 +87,11 @@ router.get('/modificar/:id', function (req, res, next){
 router.post('/modificar/:id',  upload.single('img'), async function (req, res, next){
   let consulta;
   if (req.file){
-    consulta =  `update shows set nombre  = '${req.body.nombre}',fecha = '${req.body.fecha}', descripcion  = '${req.body.descripcion}', img = '/images/${req.file.originalname}' where id = ${req.params.id} `
+    consulta =  `update shows set nombre  = '${req.body.nombre}',fecha = '${req.body.fecha}', descripcion  = '${req.body.descripcion}', img = '/images/${req.file.originalname}', precio = '${req.body.precio}' where id = ${req.params.id} `
 
     fs.createReadStream("./uploads/" + req.file.filename).pipe(fs.createWriteStream("./public/images/" + req.file.originalname), function(error){})
   } else {
-    consulta = `update shows set nombre  = '${req.body.nombre}', fecha = '${req.body.fecha}', descripcion  = '${req.body.descripcion}' where id = ${req.params.id}` 
+    consulta = `update shows set nombre  = '${req.body.nombre}', fecha = '${req.body.fecha}', descripcion  = '${req.body.descripcion}', precio = '${req.body.precio}' where id = ${req.params.id}` 
   }  
   connection.query(consulta, function (error, results, fields) {
 

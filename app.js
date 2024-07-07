@@ -6,9 +6,11 @@ const logger = require('morgan');
 const jwt = require('jsonwebtoken');
 const config = require('./config/config');
 const hbs = require('hbs');
+const session = require('express-session');
 
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
+const userRouter = require('./routes/user');
 const showsRouter = require('./routes/shows');
 const carritoRouter = require('./routes/carrito');
 const authRouter = require('./routes/authRoutes');
@@ -27,30 +29,18 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-
-//middleware
-/* app.use((req, res, next) => {
-  const token = req.cookies.authToken;
-  if (token) {
-    jwt.verify(token, config.secretKey, (err, decoded) => {
-      if (!err) {
-        res.locals.user = decoded;
-      } else {
-        res.locals.user = null;
-      }
-      next(); 
-    });
-  } else {
-    res.locals.user = null;
-    next();
-  }
-}); */
-/* app.use(authMiddleware); */
+app.use(session({
+  secret: 'secret2121',
+  resave: false,
+  saveUninitialized: true,
+  cookie: { secure: true } // set to true if using https
+}));
 app.use(authMiddlewareMix);
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/shows', showsRouter);
+app.use('/user', userRouter);
 app.use('/carrito', carritoRouter);
 app.use('/auth', authRouter);
 

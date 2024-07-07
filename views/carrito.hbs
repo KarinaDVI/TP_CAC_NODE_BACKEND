@@ -9,27 +9,33 @@
             </div>
             <div class="ticket-sales-container">
                 <form action="/carrito/comprar/{{id}}" method="post" 
-                class="d-block" enctype="multipart/form-data">
-                <label for="" >{{nombre}}</label><br>
-                <label for="ticket-quantity">Numero de Entradas:</label>
-                <select id="ticket-quantity1" name="cantidad">
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
-                    <option value="6">6</option>
-                    <option value="7">7</option>
-                    <option value="8">8</option>
-                </select>
-                <button class="add-to-cart" type="submit">Agregar al carrito</button>
-                
+                    class="d-block" enctype="multipart/form-data">
+                    <input type="hidden" name="">
+                    <label for="" >{{nombre}}</label><br>
+                    <label for="ticket-quantity">Numero de Entradas:</label>
+                    {{!-- <input type="number" name="cantidad"> --}}
+                    <select id="ticket-quantity1" name="cantidad" aria-selected="true">
+                        <option selected>5</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                    </select>
+                    <input type="number" name="precio" disabled value="{{precio}}">
+                    <button type="submit" class="add-to-cart">Agregar al carrito</button>
+                </form>
             </div>
-            </form>
+            
         </div>
         {{/each}}
           <div class="m-auto my-3 pb-5">
                 <a href="/" class="btn btn-secondary" type="button">Retornar</a>
+                <a href="/user">Ver compras</a>
             </div>
+
     </div>
 </div>

@@ -4,9 +4,9 @@ const config = require('../config/config');
 const protectedRoutes = [
   '/',
   '/auth/login',
-  '/auth/register',
-  '/carrito/'
-  // Añade aquí más rutas que quieras proteger
+  '/auth/register'/* ,
+  '/carrito/' */
+  // Añade aquí más rutas que no quieras proteger
 ];
 
 const authMiddleware = (req, res, next) => {
