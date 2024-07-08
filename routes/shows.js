@@ -11,7 +11,7 @@ const authMiddleware = require('../middlewares/authMiddleware');
 
 
   
-router.get('/listado/',authMiddleware, function(req, res, next) {
+router.get('/listado/', function(req, res, next) {
     consulta = 'select * from shows'; 
     connection.query(consulta, function (error, results, fields) {
         if (error) throw error;
@@ -23,7 +23,7 @@ router.get('/listado/',authMiddleware, function(req, res, next) {
 });
 
 /* Listado con filtro por id */
-router.post('/listado', authMiddleware, function(req, res, next) {
+router.post('/listado', function(req, res, next) {
   if(req.body.id){
     consulta = 'select * from shows where id = ' +  req.body.id +' LIMIT 1'
   }else{

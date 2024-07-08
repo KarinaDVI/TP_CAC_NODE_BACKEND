@@ -1,35 +1,34 @@
-// Importa el módulo express
 const express = require('express');
-// Importa el módulo de autenticación
 const authController = require('../controllers/authController');
+const authMiddleware = require('../middlewares/authMiddlewareMix');
 
-// Crea un nuevo middleware de autenticación
-const authMiddleware = require('../middlewares/authMiddleware');
+const router = express.Router();
 
-var router = express.Router();
-
-router.get('/login', (req, res, next)=>{
+router.get('/login', (req, res) => {
   res.render('login');
 });
-router.get('/register', (req, res, next)=> {
-res.render('register');
+
+router.get('/register', (req, res) => {
+  res.render('register');
 });
-// Ruta para registrar un nuevo usuario
+
 router.post('/register', authController.register);
 
-// Ruta para iniciar sesión con un usuario ya existente
 router.post('/login', authController.login);
 
-//Salir de sesion
-router.get('/logout', (req, res, next)=> {
-  res.clearCookie('authToken');
-  res.render('mensaje', { mensaje:'Usuario deslogueado'});
+router.get('/logout', (req, res) => {
+  req.session.destroy(err => {
+    if (err) {
+      return res.status(500).render('mensaje', { mensaje: 'Error al cerrar sesión' });
+    }
+    res.clearCookie('connect.sid');
+    res.clearCookie('authToken');
+    res.render('mensaje', { mensaje: 'Usuario deslogueado' });
   });
+});
 
-// Ruta protegida que solo puede ser accedida con autenticación,
-// devuelve 'Bienvenido' al usuario autenticado.
 router.get('/protected', authMiddleware, (req, res) => {
-    res.status(200).send(`Hello user ${req.userId} esta es una ruta protegida`);
+  res.status(200).send(`Hello user ${req.session.user.username}, esta es una ruta protegida`);
 });
 
 module.exports = router;

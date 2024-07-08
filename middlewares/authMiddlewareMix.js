@@ -2,11 +2,14 @@ const jwt = require('jsonwebtoken');
 const config = require('../config/config');
 
 const protectedRoutes = [
-  '/',
+  /*'/',
   '/auth/login',
-  '/auth/register'/* ,
-  '/carrito/' */
-  // Añade aquí más rutas que no quieras proteger
+  '/auth/register' ,*/
+   '/listado/',
+   '/shows/listado',
+   '/shows/',
+   '/user/'
+  // Añade aquí más rutas que quieras proteger
 ];
 
 const authMiddleware = (req, res, next) => {
@@ -35,7 +38,7 @@ const authMiddleware = (req, res, next) => {
     res.locals.user = null;
 
     // Si la ruta NO está protegida y no hay token, redirigir a login
-    if (!protectedRoutes.includes(req.path)) {
+    if (protectedRoutes.includes(req.path)) {
       return res.render('login', { mensaje: 'No tiene permisos para ver esta página, inicie sesión o regístrese' });
     }
 

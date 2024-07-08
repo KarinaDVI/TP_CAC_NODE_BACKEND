@@ -1,7 +1,6 @@
 var express = require('express');
 var router = express.Router();
 const connection = require("../bbdd")
-const authMiddleware = require('../middlewares/authMiddleware');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {

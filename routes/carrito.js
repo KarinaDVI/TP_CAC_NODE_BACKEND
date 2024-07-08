@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 const connection = require("./../bbdd");
+const authMiddleware = require('../middlewares/authMiddlewareMix');
 
 
 router.use(express.json());
