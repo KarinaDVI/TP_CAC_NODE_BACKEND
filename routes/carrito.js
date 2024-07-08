@@ -1,54 +1,37 @@
 var express = require('express');
 var router = express.Router();
-const connection = require("./../bbdd")
+const connection = require("./../bbdd");
+
+
+router.use(express.json());
+router.use(express.urlencoded({ extended: true }));
 
 router.get('/', function(req, res, next) {
-    connection.query( 'SELECT * FROM shows;', function(error,
-        results, fields){
-            
-            if (error) throw error;
-            /* res.json({data: results}) */
-           /*  console.log(results) */
-            res.render('carrito',{data:results,
-                                mensaje:'Adquiri tus entradas!'
-                        })
-        });
-  
-  });
-
-
-  router.post('/comprar/:id', function(req, res, next) {
-    if (!req.session.compras) {
-        req.session.compras = [];
-    }
-
-    // Extrae el ID del show y la cantidad de la solicitud
-    console.log(`req.body.cantidad: ${req.body.cantidad}`); // Para depuración
-    console.log(`req.body: ${JSON.stringify(req.body)}`);
-    req.session.compras.push(
-        {id_show:req.params.id,
-         cantidad:req.body.cantidad
-        });
-    req.session.compras.forEach(element => {
-       console.log(`comprado el elemento ${element.id_show},${element.cantidad}`) 
+    connection.query('SELECT * FROM shows;', function(error, results, fields) {
+        if (error) throw error;
+        res.render('carrito', { data: results, mensaje: 'Adquiri tus entradas!' });
     });
+});
 
-    let consulta =  `INSERT into compra (id_user, id_show, cantidad, precio)  values('${req.userId}',
-                                                                                '${req.params.id}',
-                                                                                '${req.body.cantidad}',
-                                                                                '${req.body.precio}')`
+router.post('/:id', function(req, res, next) {
+    console.log('Datos recibidos:', req.body); // Para depuración
 
-    /* let consulta='insert into compra (id_user, id_show, cantidad, precio) values("' 
-                                + req.userId + '","' 
-                                + req.params.id +'","' 
-                                + req.body.cantidad + '","' 
-                                + req.body.precio + '")' */
+    let id_show = req.body.id_show;
+    let cantidad = req.body.cantidad;
+    let precio = req.body.precio;
+
+    console.log(`id_show: ${id_show}, cantidad: ${cantidad}, precio: ${precio}`);
+
+    let consulta = `INSERT INTO compra (id_user, id_show, cantidad, precio, estado_compra) 
+                    VALUES ('${req.userId}', '${id_show}', '${cantidad}', '${precio}', 'en carrito')`;
+
     connection.query(consulta, function (error, results, fields) {
         if (error) throw error;
+        console.log(results);
+        /* res.render('mensaje', {
+            mensaje: 'Compra Finalizada Exitosamente'
+        }); */
+    });
+});
 
-      });
-  
-  });
-  
-  
-  module.exports = router
+module.exports = router;

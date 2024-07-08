@@ -28,6 +28,7 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use(authMiddlewareMix);
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(session({
   secret: 'secret2121',
@@ -35,7 +36,7 @@ app.use(session({
   saveUninitialized: true,
   cookie: { secure: true } // set to true if using https
 }));
-app.use(authMiddlewareMix);
+
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);

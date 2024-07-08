@@ -27,8 +27,8 @@ const authMiddleware = (req, res, next) => {
         username: decoded.username // Asegúrate de incluir username si lo necesitas
       };
       req.userId = decoded.id; // Opcional: almacenar el ID en req.userId si lo necesitas en otras partes del código
-      console.log(`ID de usuario: ${req.userId}`);
-      console.log('UsuarioMix:', res.locals.user);
+      /* console.log(`ID de usuario: ${req.userId}`); 
+      console.log('UsuarioMix:', res.locals.user);*/
       next();
     });
   } else {

@@ -9,17 +9,6 @@ const connection = require("./../bbdd")
 const fs = require('fs');
 const authMiddleware = require('../middlewares/authMiddleware');
 
-/* GET home page. */
-/* router.get('/', function(req, res, next) {
-    
-    connection.query( 'SELECT * FROM shows;', function(error,
-        results, fields){
-            
-            if (error) throw error;
-            res.json(results)
-          });
-  
-  }); */
 
   
 router.get('/listado/',authMiddleware, function(req, res, next) {
