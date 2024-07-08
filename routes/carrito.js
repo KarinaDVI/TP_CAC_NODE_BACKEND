@@ -14,20 +14,20 @@ router.get('/', function(req, res, next) {
 });
 
 router.post('/:id', function(req, res, next) {
-    console.log('Datos recibidos:', req.body); // Para depuración
+   /*  console.log('Datos recibidos:', req.body); */ // Para depuración
 
     let id_show = req.body.id_show;
     let cantidad = req.body.cantidad;
     let precio = req.body.precio;
 
-    console.log(`id_show: ${id_show}, cantidad: ${cantidad}, precio: ${precio}`);
+    /* console.log(`id_show: ${id_show}, cantidad: ${cantidad}, precio: ${precio}`); */
 
     let consulta = `INSERT INTO compra (id_user, id_show, cantidad, precio, estado_compra) 
                     VALUES ('${req.userId}', '${id_show}', '${cantidad}', '${precio}', 'en carrito')`;
 
     connection.query(consulta, function (error, results, fields) {
         if (error) throw error;
-        console.log(results);
+        /* console.log(results); */
         /* res.render('mensaje', {
             mensaje: 'Compra Finalizada Exitosamente'
         }); */

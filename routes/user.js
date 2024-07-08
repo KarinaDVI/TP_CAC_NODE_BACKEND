@@ -12,7 +12,7 @@ router.get('/', function(req, res, next) {
         
         if (error) throw error;
         /* res.json({data: results}) */
-         console.log(results)
+        /*  console.log(results) */
          res.render('dashboard', {
             data:results,
             mensaje: 'Finalizar Compra'
@@ -22,7 +22,7 @@ router.get('/', function(req, res, next) {
 });
 
 router.post('/finalizar/:id', function(req, res, next) {
-    console.log(req.body); // Para depuración
+   /*  console.log(req.body);  */// Para depuración
 
     let consulta =  `update compra set estado_compra='finalizado' where id_venta= '${req.params.id}'`
 
@@ -34,14 +34,14 @@ router.post('/finalizar/:id', function(req, res, next) {
     });
 });
 router.post('/cancelar/:id', function(req, res, next) {
-    console.log(req.body); // Para depuración
+   /*  console.log(req.body); // Para depuración */
 
     let consulta =  `DELETE FROM compra where id_venta= '${req.params.id}'`
 
     connection.query(consulta, function (error, results, fields) {
         if (error) throw error;
         res.render('mensaje', {
-            mensaje: 'Compra Finalizada Exitosamente'
+            mensaje: 'Cancelaste tu compra'
         });
     });
 });
