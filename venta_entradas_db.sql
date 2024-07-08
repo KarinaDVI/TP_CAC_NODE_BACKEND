@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 06-07-2024 a las 16:01:09
+-- Tiempo de generación: 08-07-2024 a las 10:35:51
 -- Versión del servidor: 10.4.22-MariaDB
 -- Versión de PHP: 7.4.28
 
@@ -44,8 +44,20 @@ CREATE TABLE `compra` (
   `id_user` int(11) NOT NULL,
   `id_show` int(11) NOT NULL,
   `cantidad` int(11) NOT NULL,
-  `precio` int(255) NOT NULL
+  `precio` int(255) NOT NULL,
+  `estado_compra` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `compra`
+--
+
+INSERT INTO `compra` (`id_venta`, `id_user`, `id_show`, `cantidad`, `precio`, `estado_compra`) VALUES
+(93, 17, 11, 1, 50000, ''),
+(101, 17, 11, 1, 50000, 'en carrito'),
+(102, 17, 11, 1, 50000, 'en carrito'),
+(103, 17, 9, 1, 18000, 'finalizado'),
+(104, 17, 14, 1, 25000, 'en carrito');
 
 -- --------------------------------------------------------
 
@@ -58,18 +70,19 @@ CREATE TABLE `shows` (
   `nombre` varchar(255) NOT NULL,
   `img` varchar(255) DEFAULT NULL,
   `fecha` varchar(255) NOT NULL,
-  `descripcion` text NOT NULL
+  `descripcion` text NOT NULL,
+  `precio` int(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `shows`
 --
 
-INSERT INTO `shows` (`id`, `nombre`, `img`, `fecha`, `descripcion`) VALUES
-(9, 'Calamity', '/images/4196e1fe-c3ae-4bf6-bb41-f9d6bad8a3bf.jpg', '2024-08-03', 'Algo esta llegando'),
-(11, 'Decadentes', '/images/logo-los-autenticos-decadentes.png', '2024-11-15', 'El regreso'),
-(12, 'Tini', '/images/flat,750x,075,f-pad,750x1000,f8f8f8.jpg', '2024-08-10', 'long play'),
-(14, 'Kapanga', '/images/kapanga.jpg', '2024-07-21', 'Proximamente');
+INSERT INTO `shows` (`id`, `nombre`, `img`, `fecha`, `descripcion`, `precio`) VALUES
+(9, 'Calamity', '/images/4196e1fe-c3ae-4bf6-bb41-f9d6bad8a3bf.jpg', '2024-08-03', 'Algo esta llegando', 18000),
+(11, 'Decadentes', '/images/logo-los-autenticos-decadentes.png', '2024-11-15', 'El regreso', 50000),
+(12, 'Tini', '/images/flat,750x,075,f-pad,750x1000,f8f8f8.jpg', '2024-08-10', 'long play', 15000),
+(14, 'Kapanga', '/images/kapanga.jpg', '2024-07-21', 'Proximamente', 25000);
 
 -- --------------------------------------------------------
 
@@ -92,7 +105,8 @@ CREATE TABLE `users` (
 INSERT INTO `users` (`id_user`, `username`, `ciudad`, `email`, `clave`) VALUES
 (15, 'user7', 'Tres de febrero', 'karina.bouza@hotmail.com', '$2a$08$FnD5WRM/6IJyeTm5923mjODvoMidRVXWXqNmxHwI4xXF.ZOXoPzIe'),
 (16, 'user7', 'Tres de febrero', 'karina.bouza@hotmail.com', '$2a$08$WY5eHTDzvwxnoYqcGOnQG.4xixqLuZshoFDcAeDvMtuLVaPtH8t3S'),
-(17, 'user8', 'Tres de febrero', 'karina.bouza@hotmail.com', '$2a$08$T3BsmYA11J48fU6e/zDgOeuC.YL/KPpWQFbEq2MgfK7vH305bw9lW');
+(17, 'user8', 'Tres de febrero', 'karina.bouza@hotmail.com', '$2a$08$T3BsmYA11J48fU6e/zDgOeuC.YL/KPpWQFbEq2MgfK7vH305bw9lW'),
+(19, 'i_lgfm@hotmail.com', 'user8', 'i_lgfm@hotmail.com', '$2a$08$DPZrwmXy.DOfEOVyIzzUQOa.A5Y7zEBG.TmYKvX99QbYlAlTvT0VG');
 
 --
 -- Índices para tablas volcadas
@@ -136,7 +150,7 @@ ALTER TABLE `admins`
 -- AUTO_INCREMENT de la tabla `compra`
 --
 ALTER TABLE `compra`
-  MODIFY `id_venta` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_venta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=106;
 
 --
 -- AUTO_INCREMENT de la tabla `shows`
@@ -148,7 +162,7 @@ ALTER TABLE `shows`
 -- AUTO_INCREMENT de la tabla `users`
 --
 ALTER TABLE `users`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
