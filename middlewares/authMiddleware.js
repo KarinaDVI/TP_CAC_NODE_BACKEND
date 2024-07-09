@@ -1,6 +1,8 @@
 const jwt = require('jsonwebtoken');
 const config = require('../config/config');
 
+
+//Validador de rutas especificas:
 module.exports = (req, res, next) => {
   const token = req.cookies.authToken;
 

@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 const connection = require("./../bbdd");
-const authMiddleware = require('../middlewares/authMiddlewareMix');
+const authMiddleware = require('../middlewares/authMiddleware');
 
 
 router.use(express.json());
@@ -14,7 +14,7 @@ router.get('/', function(req, res, next) {
     });
 });
 
-router.post('/:id', function(req, res, next) {
+router.post('/:id',authMiddleware, function(req, res, next) {
    /*  console.log('Datos recibidos:', req.body); */ // Para depuración
 
     let id_show = req.body.id_show;

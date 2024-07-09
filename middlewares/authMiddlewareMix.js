@@ -1,18 +1,18 @@
 const jwt = require('jsonwebtoken');
 const config = require('../config/config');
 
+
+//Validador de rutas generales tipo /listado/, /carrito/ de ver
 const protectedRoutes = [
   /*'/',
   '*/
-   '/listado/',
-   '/shows/listado',
-   '/shows/',
-   '/user/',
    
+   '/shows/',
+   '/user/'
   // Añade aquí más rutas que quieras proteger
 ];
 
-const authMiddleware = (req, res, next) => {
+const authMiddlewareMix = (req, res, next) => {
   const token = req.cookies.authToken;
 
   // Verificar el token para todas las solicitudes
@@ -30,20 +30,21 @@ const authMiddleware = (req, res, next) => {
         username: decoded.username // Asegúrate de incluir username si lo necesitas
       };
       req.userId = decoded.id; // Opcional: almacenar el ID en req.userId si lo necesitas en otras partes del código
-      /* console.log(`ID de usuario: ${req.userId}`); 
-      console.log('UsuarioMix:', res.locals.user);*/
+      //console.log(`ID de usuario: ${req.userId}`); 
+      //console.log('UsuarioMix:', res.locals.user);
       next();
     });
   } else {
     res.locals.user = null;
-
+    
     // Si la ruta NO está protegida y no hay token, redirigir a login
-    if (protectedRoutes.includes(req.path)) {
+    if (protectedRoutes.includes(req.path) ) {
       return res.render('login', { mensaje: 'No tiene permisos para ver esta página, inicie sesión o regístrese' });
     }
+    //Para proteger rutas sin estar incluidas:
 
     next();
   }
 };
 
-module.exports = authMiddleware;
+module.exports = authMiddlewareMix;

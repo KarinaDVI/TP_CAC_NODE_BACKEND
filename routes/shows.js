@@ -1,13 +1,12 @@
 var express = require('express');
 var router = express.Router();
-
+const authMiddleware = require('../middlewares/authMiddleware');
 const multer  = require('multer')
 const upload = multer({ dest: 'uploads/' })
 
 const connection = require("./../bbdd")
 
 const fs = require('fs');
-const authMiddleware = require('../middlewares/authMiddleware');
 
 
   
@@ -37,7 +36,7 @@ router.post('/listado', function(req, res, next) {
 });
 
   /* MostrarForm de alta */
-  router.get('/alta/', function(req,res, next){
+  router.get('/alta/',authMiddleware, function(req,res, next){
 
     res.render('alta_form',{
                         mensaje:'Alta de Shows',
@@ -47,7 +46,7 @@ router.post('/listado', function(req, res, next) {
   });
 
 /* Alta de Show */
-router.post('/alta',  upload.single('img'), async function (req, res, next){
+router.post('/alta',authMiddleware,  upload.single('img'), async function (req, res, next){
   // Concatenando cadenas con signo +
   let consulta = 'insert into shows (nombre, fecha, descripcion, img, precio) values("' + req.body.nombre + '","' 
                                                                                     + req.body.fecha +'","' 
@@ -62,7 +61,7 @@ router.post('/alta',  upload.single('img'), async function (req, res, next){
 })
 
 /* Modificación de Show - Anda medio medio -.-*/
-router.get('/modificar/:id', function (req, res, next){
+router.get('/modificar/:id',authMiddleware, function (req, res, next){
   connection.query('select * from shows where id = ' + req.params.id, function (error, results, fields) {
       if (error) throw error;
       res.render('editar_show',{data:results,
@@ -73,7 +72,7 @@ router.get('/modificar/:id', function (req, res, next){
 })
 
 
-router.post('/modificar/:id',  upload.single('img'), async function (req, res, next){
+router.post('/modificar/:id',authMiddleware,  upload.single('img'), async function (req, res, next){
   let consulta;
   if (req.file){
     consulta =  `update shows set nombre  = '${req.body.nombre}',fecha = '${req.body.fecha}', descripcion  = '${req.body.descripcion}', img = '/images/${req.file.originalname}', precio = '${req.body.precio}' where id = ${req.params.id} `
@@ -91,7 +90,7 @@ router.post('/modificar/:id',  upload.single('img'), async function (req, res, n
 })
 
 //Eliminado
-router.get('/eliminar/:id', function (req, res, next){
+router.get('/eliminar/:id',authMiddleware, function (req, res, next){
 
   connection.query('select * from shows where id = ' + req.params.id, function (error, results, fields) {
 
@@ -101,7 +100,7 @@ router.get('/eliminar/:id', function (req, res, next){
   });
 })
 
-router.post('/eliminar/:id', function (req, res, next){
+router.post('/eliminar/:id',authMiddleware, function (req, res, next){
 
   connection.query('delete from shows where id = ' + req.params.id, function (error, results, fields) {
 

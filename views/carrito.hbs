@@ -9,10 +9,11 @@
             </div>
             <form action="/carrito/{{id}}" method="post">
                 <div class="ticket-sales-container">
-                    <label for="ticket-quantity">Número de Entradas:</label>
                     <input type="hidden" name="id_show" value="{{id}}">
-                    <input type="number" name="precio" value="{{precio}}">
-                    {{#if user}}
+                    <label for="">{{nombre}}</label><br>
+                    <input type="number" name="precio" value="{{precio}}" readonly>
+                    
+                    <label for="ticket-quantity">Número de Entradas:</label>
                     <select id="ticket-quantity1" name="cantidad">
                         <option value="1">1</option>
                         <option value="2">2</option>
@@ -23,10 +24,10 @@
                         <option value="7">7</option>
                         <option value="8">8</option>
                     </select>
-                    <label for="">{{nombre}}</label><br>
                     <button type="submit" class="add-to-cart">Agregar al carrito</button>
+                    
                 </div>
-                {{/if}}
+                
             </form>
         </div>
         {{/each}}
