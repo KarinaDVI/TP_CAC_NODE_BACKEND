@@ -12,6 +12,7 @@
                     <label for="ticket-quantity">Número de Entradas:</label>
                     <input type="hidden" name="id_show" value="{{id}}">
                     <input type="number" name="precio" value="{{precio}}">
+                    {{#if user}}
                     <select id="ticket-quantity1" name="cantidad">
                         <option value="1">1</option>
                         <option value="2">2</option>
@@ -25,6 +26,7 @@
                     <label for="">{{nombre}}</label><br>
                     <button type="submit" class="add-to-cart">Agregar al carrito</button>
                 </div>
+                {{/if}}
             </form>
         </div>
         {{/each}}

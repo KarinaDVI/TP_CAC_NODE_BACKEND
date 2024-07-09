@@ -3,12 +3,12 @@ const config = require('../config/config');
 
 const protectedRoutes = [
   /*'/',
-  '/auth/login',
-  '/auth/register' ,*/
+  '*/
    '/listado/',
    '/shows/listado',
    '/shows/',
-   '/user/'
+   '/user/',
+   
   // Añade aquí más rutas que quieras proteger
 ];
 
