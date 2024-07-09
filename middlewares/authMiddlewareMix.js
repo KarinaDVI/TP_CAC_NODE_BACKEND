@@ -1,18 +1,14 @@
 const jwt = require('jsonwebtoken');
 const config = require('../config/config');
 
-
-//Validador de rutas generales tipo /listado/, /carrito/ de ver
 const protectedRoutes = [
-  /*'/',
-  '*/
-   
-   '/shows/',
-   '/user/'
+  '/user/',
+  '/shows/',
+  '/shows/listado'
   // Añade aquí más rutas que quieras proteger
 ];
 
-const authMiddlewareMix = (req, res, next) => {
+const authMiddleware = (req, res, next) => {
   const token = req.cookies.authToken;
 
   // Verificar el token para todas las solicitudes
@@ -29,22 +25,27 @@ const authMiddlewareMix = (req, res, next) => {
         id: decoded.id,
         username: decoded.username // Asegúrate de incluir username si lo necesitas
       };
+
+      req.session.user = {
+        id: decoded.id,
+        username: decoded.username // Asegúrate de incluir username si lo necesitas
+      };
+     
       req.userId = decoded.id; // Opcional: almacenar el ID en req.userId si lo necesitas en otras partes del código
-      //console.log(`ID de usuario: ${req.userId}`); 
-      //console.log('UsuarioMix:', res.locals.user);
+      /* console.log(`ID de usuario: ${req.userId}`);
+      console.log('UsuarioMix:', res.locals.user);
+      console.log('Usuario de session:', req.session.user); */
       next();
     });
   } else {
     res.locals.user = null;
-    
+
     // Si la ruta NO está protegida y no hay token, redirigir a login
-    if (protectedRoutes.includes(req.path) ) {
+    if (protectedRoutes.includes(req.path)) {
       return res.render('login', { mensaje: 'No tiene permisos para ver esta página, inicie sesión o regístrese' });
     }
-    //Para proteger rutas sin estar incluidas:
-
     next();
   }
 };
 
-module.exports = authMiddlewareMix;
+module.exports = authMiddleware;

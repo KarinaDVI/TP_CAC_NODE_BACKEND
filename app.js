@@ -28,7 +28,7 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(authMiddlewareMix);
+
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(session({
   secret: 'secret2121',
@@ -37,6 +37,11 @@ app.use(session({
   cookie: { secure: true } // set to true if using https
 }));
 
+app.use((req, res, next) => {
+  res.locals.user = req.session.user;
+  next();
+});
+app.use(authMiddlewareMix);
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
@@ -49,6 +54,8 @@ app.use('/auth', authRouter);
 app.use(function (req, res, next) {
   next(createError(404));
 });
+
+
 
 // error handler
 app.use(function (err, req, res, next) {

@@ -46,7 +46,7 @@ exports.login = (req, res) => {
     }
 
     if (results.length === 0) {
-      return res.status(404).render('login', { mensaje: 'Usuario inexistente' });
+      return res.status(404).render('register', { mensaje: 'Usuario inexistente' });
     }
 
     const user = results[0];
