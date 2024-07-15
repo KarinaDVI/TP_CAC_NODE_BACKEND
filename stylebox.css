@@ -1,0 +1,131 @@
+
+
+
+
+
+/*MAIN******** FORMULARIO**********/
+
+
+.main-container {
+    position: relative;
+    min-height: 100vh;
+}
+
+.login-box {
+    width: 30%;
+    padding: 2%;
+    background: #242026;
+    box-shadow: 0 10px 15px rgba(143, 124, 236, 0.7);
+    border-radius: 10px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+
+.login-box h2 {
+    margin: 0 0 30px;
+    padding: 0;
+    color: #fff;
+    text-align: center;
+}
+
+.login-box .user-box input {
+    position: relative;
+    width: 100%;
+    padding: 8px 0;
+    font-size: 16px;
+    color: #fff;
+    margin-bottom: 15px;
+    border: none;
+    border-bottom: 1px solid #fff;
+    outline: none;
+    background: transparent;
+}
+
+.login-box .user-box label {
+    position: relative;
+    left: 0;
+    top: -60px;
+    padding: 10px 0;
+    font-size: 16px;
+    color: #fff;
+    pointer-events: none;
+    transition: .5s;
+}
+
+.login-box .user-box input:focus~label,
+.login-box .user-box input:valid~label {
+    top: -85px;
+    left: 0;
+    color: #8F7CEC;
+    font-size: 12px;
+}
+
+button {
+    background-color: #472350;
+    color: #fff;
+    border: none;
+    padding: 1%;
+    border-radius: 100px;
+	font-size: 9px;
+}
+
+#submit {
+    padding: 8px 16px;
+    color: #CBBDDB;
+    font-size: 14px;
+    text-decoration: none;
+    text-transform: uppercase;
+    overflow: hidden;
+    transition: .5s;
+    letter-spacing: 4px;
+    border: 1px solid #8F7CEC;
+    margin: auto;
+    background: transparent;
+}
+
+#submit:hover {
+    background: #8F7CEC;
+    color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 3px #ad9ff3;
+}
+
+
+.button-form {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 3%;
+    margin-top: 3%;
+}
+
+#register {
+    font-size: 14px;
+    text-decoration: none;
+    color: #CBBDDB;
+    margin: auto;
+    width: 60%;
+    text-align: center;
+    padding: 3%;
+}
+
+#register a {
+    margin: auto;
+    color: #8F7CEC;
+    text-decoration: none;
+}
+a:visited{
+    color:#CBBDDB;
+}
+
+a:visited:hover {
+    color:  #333;
+    /* text-decoration: underline;*/
+}
+
+.link-home {
+    position: absolute;
+}
+
