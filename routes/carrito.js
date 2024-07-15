@@ -9,7 +9,7 @@ router.use(express.urlencoded({ extended: true }));
 router.get('/', function(req, res, next) {
     connection.query('SELECT * FROM shows;', function(error, results, fields) {
         if (error) throw error;
-        res.render('carrito', { data: results, mensaje: 'Adquiri tus entradas!'});
+        res.render('carrito', { data: results, mensaje: 'Adquirí tus entradas!'});
     });
 });
 

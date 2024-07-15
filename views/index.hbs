@@ -3,28 +3,27 @@
 	
 	{{> newshows}}
 	
-		<section>
+		<section class="my-media-query">
 			<div class="text-center fontMaliregular400 backmask mt-5">
 				<h2 class="text-light mt-5 mb-2 ">{{mensaje}}</h2>
 			</div>
-			
 			<!-- CARDS -->
 			{{#if mostrarNovedades}}
-		<div class="container-fluid d-flex justify-content-center mt-5 backmask">
-		<div id="cardindex" class="row justify-content-md-center row-cols-sm-2 row-cols-lg-3 row-cols-xl-4 g-2 my-4 align-middle">
+		<div class="container-fluid d-flex justify-content-center mt-5 backmask flex-wrap">
+		<div id="cardindex" class="row justify-content-md-center row-cols-sm-2 row-cols-md-3 row-cols-lg-3 g-3 my-4 align-middle m-2 custom-row-gap">
 			{{#each data}}
 			<div class="col d-flex justify-content-center my-2">
-			<div class="card bg-dark cardwidth">
-				<img src="{{img}}" class="card-img-top h-75" alt="{{this.nombre}}">
+				<div class="card my-fixed-size bg-dark cardwidth">
+					<img src="{{img}}" class="card-img-top h-75" alt="{{this.nombre}}">
 				<div class="card-body h-20">
-				<h4 class="card-title fontMalisemibold600 ml-5 text-light">{{this.nombre}}</h4>
-				<p class="card-text text-light ms-5">{{this.fecha}}</p>
+					<h4 class="card-title fontMalisemibold600 ml-5 text-light">{{this.nombre}}</h4>
+					<p class="card-text text-light ms-5">{{this.fecha}}</p>
 				</div>
 				<div class="card-body text-light d-flex align-items-center justify-content-center h-15">
-				<a class="link-light link-offset-2 link-underline-opacity-0 link-underline-opacity-100-hover" href="/shows/listado" class="card-link">+Info</a>
+					<a class="link-light link-offset-2 link-underline-opacity-0 link-underline-opacity-100-hover" href="/shows/listado" class="card-link">+Info</a>
 				</div>
 			</div>
-			</div>
+		</div>
 			{{/each}}
 		</div>
 		</div>

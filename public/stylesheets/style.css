@@ -301,18 +301,18 @@ footer{
 
 
 /* -----Cards----- */
-.cardframe{
+/* .cardframe{
 	border-radius: 5%;
 	background-color: #292929;
 	height:500px;
-}
+} */
 
-.cardwidth{
+/* .cardwidth{
 	width:auto;
-}
-.card {
+} */
+/* .card {
 	border: none;
-  }
+  } */
 /* ------Espaciados, margenes y otros --------------- */
 .textbody{
 	padding:5%;
