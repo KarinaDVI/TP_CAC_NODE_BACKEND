@@ -4,16 +4,16 @@ const connection = require("../bbdd")
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-    connection.query( 'SELECT * FROM shows ORDER BY id DESC LIMIT 3;', function(error,
+    connection.query( 'SELECT * FROM shows ORDER BY id DESC LIMIT 6;', function(error,
         results, fields){
             
             if (error) throw error;
             /* res.json({data: results}) */
            /*  console.log(results) */
             res.render('index',{data:results,
-                                mensaje:'Nuevos Shows!', 
+                                mensaje:'Nuevos Shows!',
                                 newshows:'newshows',
-                                footer:'footer', 
+                                footer:'footer',
                                 mostrarNovedades:true,
                                 mediosDePago:true})
         });
