@@ -7,86 +7,106 @@
 
 
 body {
-    background: #131315;
+    background: #3a3a3d;
     font-family: var(--font-style);
     transition: background-color 0.5s, color 0.5s;
 }
 
-/*HEADER*/
-
-/* header{
-	width: 100%;
-	position: relative;
-	display: flexbox;
-	background: -webkit-linear-gradient(left, rgba(81, 99, 149, .5), rgba(255, 255, 255, 0.5));
-	background-size: cover;
-    background-attachment: fixed;
-    padding: 1%;
-
-} */
 
 .barra-navegacion{
 	display: flex;
-	justify-content: space-between;
+	font-size: 1.2em;
     align-items: center;
     padding: 10px;
     text-decoration: none;
+    font-style:initial;
 }
 
+/* *********** NEW SHOWS HBS (letra Adquirí tus entradas) ********** */
+
+.custom-heading {
+    font-size: 3em;
+    font-family: "Arial", sans-serif;
+    font-weight: bold;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+
+/* *********** FIN NEW SHOWS ************ */
 
 .container {
-    flex-grow: 1;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center; /* Centra las tarjetas horizontalmente */
 }
 
-.home a, .sesion a {
-    display: inline;
-    text-decoration: none;
-    margin: 0 15px;
-    color: #666;
-    transition: color 0.3s ease;
-    font-family: "Glory", sans-serif;
+.card {
+    height: 100%; /* Ajusta la altura de la tarjeta */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Distribuye el contenido verticalmente */
 }
 
-.home a, .sesion a:hover {
-    color: #333;
-    /* text-decoration: underline; */
+.card-body {
+    flex: 1; /* Ocupa el espacio disponible verticalmente */
 }
 
-/*MAIN******** FORMULARIO**********/
+.card-img-top {
+
+        width: 100%;
+        height: 260px;
+        object-fit: cover;
+}
+
+.ticket-sales-container {
+    margin-top: 10px; /* Espacio entre la imagen y el contenido */
+}
+
+.add-to-cart {
+    margin-top: 10px; /* Espacio entre el select y el botón */
+}
+
+
+
+/*MAIN* ******* FORMULARIO**********/
 
 
 .main-container {
-    position: relative;
-    min-height: 100vh;
+    min-height: 90vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
 }
 
 .login-box {
-    width: 30%;
-    padding: 2%;
-    background: #242026;
+    
+    width: 100%;
+    max-width: 400px; /* Ancho máximo del contenedor de registro */
+    padding: 30px;
+    background: #38343a;
     box-shadow: 0 10px 15px rgba(143, 124, 236, 0.7);
     border-radius: 10px;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
 }
 
 
 .login-box h2 {
-    margin: 0 0 30px;
-    padding: 0;
+    margin-bottom: 30px;
     color: #fff;
     text-align: center;
 }
 
-.login-box .user-box input {
+.login-box .user-box {
     position: relative;
+    margin-bottom: 15px;
+}
+
+.login-box .user-box input {
     width: 100%;
     padding: 8px 0;
     font-size: 16px;
     color: #fff;
-    margin-bottom: 15px;
     border: none;
     border-bottom: 1px solid #fff;
     outline: none;
@@ -94,10 +114,10 @@ body {
 }
 
 .login-box .user-box label {
-    position: relative;
+    position: absolute;
     left: 0;
-    top: -60px;
-    padding: 10px 0;
+    top: 8px;
+    padding: 0 5px;
     font-size: 16px;
     color: #fff;
     pointer-events: none;
@@ -106,24 +126,27 @@ body {
 
 .login-box .user-box input:focus~label,
 .login-box .user-box input:valid~label {
-    top: -85px;
-    left: 0;
-    color: #8F7CEC;
+    top: -18px;
     font-size: 12px;
+    color: #8F7CEC;
 }
 
-button {
-    background-color: #472350;
-    color: #fff;
-    border: none;
-    margin:2%;
-    padding: 2%;
-    border-radius: 20px;
+.button-form {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
 }
 
-.dark-mode {
-    background-color: #000;
-    color: #fff;
+#register {
+    font-size: 14px;
+    color: #CBBDDB;
+    text-align: center;
+    padding: 10px;
+}
+
+#register a {
+    color: #8F7CEC;
+    text-decoration: none;
 }
 
 #submit {
@@ -136,7 +159,6 @@ button {
     transition: .5s;
     letter-spacing: 4px;
     border: 1px solid #8F7CEC;
-    margin: auto;
     background: transparent;
 }
 
@@ -146,82 +168,43 @@ button {
     border-radius: 5px;
     box-shadow: 0 0 3px #ad9ff3;
 }
+/*
+******** FIN DEL FORMULARIO *********** */
 
+/* ********* MEDIA QUERYS *********** */
 
-.button-form {
-    display: flex;
-    flex-direction: row;
-    margin-bottom: 3%;
-    margin-top: 3%;
+/* Media query para tablet */
+@media screen and (max-width: 768px) {
+    .my-media-query{
+        display: flex;
+        flex-direction: column;
+    }
+
+    .card {
+        width: calc(50% - 20px); /* Mostrar las tarjetas en dos columnas en tablet */
+    }
+    
+    .card-body {
+        font-size: 0.9em; /* Tamaño de fuente más pequeño para tablet */
+    }
 }
 
-#register {
-    font-size: 14px;
-    text-decoration: none;
-    color: #CBBDDB;
-    margin: auto;
-    width: 60%;
-    text-align: center;
-    padding: 3%;
+/* Media query para teléfono */
+@media screen and (max-width: 576px) {
+    .my-media-query{
+        display: flex;
+        flex-direction: column;
+    }
+
+    .card {
+        width: calc(100% - 20px); /* Mostrar las tarjetas en una columna en teléfono */
+    }
+    
+    .card-body {
+        font-size: 0.8em; /* Tamaño de fuente más pequeño para teléfono */
+    }
+    
+    .custom-heading {
+        font-size: 2.5em; /* Tamaño de fuente más pequeño para encabezados en teléfono */
+    }
 }
-
-#register a {
-    margin: auto;
-    color: #8F7CEC;
-    text-decoration: none;
-}
-a:visited{
-    color:#CBBDDB;
-}
-
-a:visited:hover {
-    color:  #333;
-    /* text-decoration: underline;*/
-}
-
-.link-home {
-    position: absolute;
-}
-
-/*FOOTER*/
-
-/* footer{
-	background-color: #333;
-	padding: 1% 0% 1% 0%;
-	margin: auto;
-	overflow: hidden;
-} */
-
-/* .contenedor-footer{
-	display: flex;
-	width: 90%;
-	justify-content: space-evenly;
-	margin: auto;
-	padding-bottom: 50px;
-	border-bottom: 1px solid #8F7CEC;
-} */
-
-/* .content-footer{
-	text-align: center;
-	margin: 1% 10% 1% 10%;
-}
-
-.content-footer h4{
-	color: black;
-	border-bottom: 3px solid #af20d3;
-}
-
-.content-footer p{
-	color: black;
-}
-
-.titulo-final{
-	color: black;
-	text-align: center;
-	font-size: 24px;
-}
- */
-
-/* Media Query para pantallas más pequeñas (ej. tablets) */
-
-

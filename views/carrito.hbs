@@ -1,37 +1,40 @@
+
+
 <div class="container mt-4">
-    <h2 class="text-light mt-5 mb-2 ">{{mensaje}}</h2>
+    <h2 class="text-light mt-5 mb-4">{{mensaje}}</h2>
     <div class="row justify-content-center text-center m-2">
-        {{#each data}} 
-        <div class="col-lg-3 col-md-4 col-sm-6 col-12 my-2">
-            <div class="ticketImage">
-                <img src="{{img}}"
-                    alt="" class="" style="max-height:200px;">
-            </div>
-            <form action="/carrito/{{id}}" method="post">
-                <div class="ticket-sales-container">
-                    <input type="hidden" name="id_show" value="{{id}}">
-                    <label for="">{{nombre}}</label><br>
-                    <input type="number" name="precio" value="{{precio}}" readonly>
-                    <label for="ticket-quantity">Número de Entradas:</label>
-                    <select id="ticket-quantity1" name="cantidad">
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                        <option value="6">6</option>
-                        <option value="7">7</option>
-                        <option value="8">8</option>
-                    </select>
-                    <button type="submit" class="add-to-cart">Agregar al carrito</button>
+        {{#each data}}
+        <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
+            <div class="card">
+                <div class="ticketImage">
+                    <img src="{{img}}" alt="" class="card-img-top">
                 </div>
-                
-            </form>
+                <div class="card-body">
+                    <form action="/carrito/{{id}}" method="post">
+                        <input type="hidden" name="id_show" value="{{id}}">
+                        <label class="fontMalisemibold600">{{nombre}}</label><br>
+                        <input type="number" name="precio" value="{{precio}}" readonly>
+                        <label class="fontMalisemibold600" for="ticket-quantity">Cantidad</label>
+                        <select id="ticket-quantity1" name="cantidad">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                        </select>
+                        <button type="submit" class="add-to-cart fontMalisemibold600">Agregar al carrito</button>
+                    </form>
+                </div>
+            </div>
         </div>
         {{/each}}
-        <div class="m-auto my-3 pb-5">
-            <a href="/" class="btn btn-secondary" type="button">Retornar</a>
-            <a href="/user" class="btn btn-outline-light">Ver compras</a>
-        </div>
+    </div>
+    <div class="m-auto my-3 pb-5 d-flex justify-content-center">
+        <a href="/" class="btn btn-secondary mx-2" type="button">Retornar</a>
+        <a href="/user" class="btn btn-outline-light mx-2">Ver compras</a>
     </div>
 </div>
+
