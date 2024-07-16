@@ -11,7 +11,7 @@
  <li>El desarrollo de backend se hizo con handlebars. Agregamos también en rama separada la primera entrega del tp como referencia.</li>
  <li><br>
  El tp está pensado para un acceso administrador mediante registro y login. 
- Se implementó así para que en un futuro se implemente un sistema de registro de usuario y con permisos de administrador del sistema  y usuarios que compran entradas
+ Se implementó así para que en un futuro se implemente un sistema de registro de usuario y con permisos de administrador del sistema  y usuarios que compran entradas. Las contraseñas están hasheades y se utilizó jwt para proteger rutas.
  </li><br>
 <li>Actualmente hay rutas protegidas a las que no se puede acceder sin nombre de usuario y contraseña. El registro está disponible para todo usuario ya que aun no se implementa el sistema de permisos. Se puede acceder a la aplicación completa con el <br> nombre de usuario: user7 <br> contraseña: user7  <br> o registrando un nombre de usuario y contraseña nuevas</li><br>
 
