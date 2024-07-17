@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.3
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Servidor: 127.0.0.1
--- Tiempo de generación: 08-07-2024 a las 10:35:51
--- Versión del servidor: 10.4.22-MariaDB
--- Versión de PHP: 7.4.28
+-- Servidor: localhost:3306
+-- Tiempo de generación: 16-07-2024 a las 23:27:47
+-- Versión del servidor: 10.4.28-MariaDB
+-- Versión de PHP: 8.2.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de datos: `venta_entradas_db`
+-- Base de datos: `venta_entradasdb`
 --
 
 -- --------------------------------------------------------
@@ -31,7 +31,7 @@ CREATE TABLE `admins` (
   `id_ad` int(11) NOT NULL,
   `nombre` varchar(50) NOT NULL,
   `rol` varchar(10) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -46,7 +46,7 @@ CREATE TABLE `compra` (
   `cantidad` int(11) NOT NULL,
   `precio` int(255) NOT NULL,
   `estado_compra` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `compra`
@@ -72,17 +72,22 @@ CREATE TABLE `shows` (
   `fecha` varchar(255) NOT NULL,
   `descripcion` text NOT NULL,
   `precio` int(255) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `shows`
 --
 
 INSERT INTO `shows` (`id`, `nombre`, `img`, `fecha`, `descripcion`, `precio`) VALUES
-(9, 'Calamity', '/images/4196e1fe-c3ae-4bf6-bb41-f9d6bad8a3bf.jpg', '2024-08-03', 'Algo esta llegando', 18000),
-(11, 'Decadentes', '/images/logo-los-autenticos-decadentes.png', '2024-11-15', 'El regreso', 50000),
-(12, 'Tini', '/images/flat,750x,075,f-pad,750x1000,f8f8f8.jpg', '2024-08-10', 'long play', 15000),
-(14, 'Kapanga', '/images/kapanga.jpg', '2024-07-21', 'Proximamente', 25000);
+(11, 'Decadentes', '/images/lad.jpg', '2024-11-15', 'El regreso', 30000),
+(12, 'Tini', '/images/Tini.jpg', '2024-08-10', 'long play', 15000),
+(14, 'Kapanga', '/images/kapanga.jpg', '2024-07-21', 'Proximamente', 25000),
+(16, 'Los Pericos', '/images/pericos.jpg', '2024-10-06', 'Show', 6000),
+(17, 'Lali Espósito', '/images/lali.jpg', '2023-11-20', 'Show', 30000),
+(19, 'Luciano Pereyra', '/images/luciano-pereryra-gentileza.jpg', '2024-12-12', 'Show', 25000),
+(21, 'Circ dul soleil', '/images/42cf3271-9c2c-4ace-b6fc-ea048c8bd285.jpg', '2025-03-31', 'Teatro', 25000),
+(22, 'Fuerza Bruta', '/images/fuerza-bruta-1545951.jpg', '2024-11-28', 'Show', 18000),
+(23, 'Esperando la carroza', '/images/carroza.jpg', '2025-03-30', 'Teatro', 20);
 
 -- --------------------------------------------------------
 
@@ -96,7 +101,7 @@ CREATE TABLE `users` (
   `ciudad` varchar(30) DEFAULT NULL,
   `email` varchar(50) NOT NULL,
   `clave` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `users`
@@ -106,7 +111,8 @@ INSERT INTO `users` (`id_user`, `username`, `ciudad`, `email`, `clave`) VALUES
 (15, 'user7', 'Tres de febrero', 'karina.bouza@hotmail.com', '$2a$08$FnD5WRM/6IJyeTm5923mjODvoMidRVXWXqNmxHwI4xXF.ZOXoPzIe'),
 (16, 'user7', 'Tres de febrero', 'karina.bouza@hotmail.com', '$2a$08$WY5eHTDzvwxnoYqcGOnQG.4xixqLuZshoFDcAeDvMtuLVaPtH8t3S'),
 (17, 'user8', 'Tres de febrero', 'karina.bouza@hotmail.com', '$2a$08$T3BsmYA11J48fU6e/zDgOeuC.YL/KPpWQFbEq2MgfK7vH305bw9lW'),
-(19, 'i_lgfm@hotmail.com', 'user8', 'i_lgfm@hotmail.com', '$2a$08$DPZrwmXy.DOfEOVyIzzUQOa.A5Y7zEBG.TmYKvX99QbYlAlTvT0VG');
+(19, 'i_lgfm@hotmail.com', 'user8', 'i_lgfm@hotmail.com', '$2a$08$DPZrwmXy.DOfEOVyIzzUQOa.A5Y7zEBG.TmYKvX99QbYlAlTvT0VG'),
+(20, 'Lucila Paiva', 'CABA', 'lucilapaivayoga@gmail.com', '$2a$08$LwS6iPcbW1G00TDyApMFpeY45Xn5WVRG96mZz07a.Z2JzRzXuX2m.');
 
 --
 -- Índices para tablas volcadas
@@ -156,13 +162,13 @@ ALTER TABLE `compra`
 -- AUTO_INCREMENT de la tabla `shows`
 --
 ALTER TABLE `shows`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT de la tabla `users`
 --
 ALTER TABLE `users`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
