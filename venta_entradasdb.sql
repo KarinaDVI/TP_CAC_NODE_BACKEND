@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost:3306
--- Tiempo de generación: 16-07-2024 a las 23:27:47
+-- Tiempo de generación: 15-07-2024 a las 21:35:00
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de datos: `venta_entradasdb`
+-- Base de datos: `venta_entradasdb.sql`
 --
 
 -- --------------------------------------------------------
